@@ -4,7 +4,9 @@
  */
 package vista;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -17,31 +19,36 @@ import javax.swing.JPanel;
  */
 public class VentanaPrincipal extends JFrame
 {
+    JButton botonCerrar;
+    JPanel panelNorte;
 
     public VentanaPrincipal()
     {
-        this.setSize(850, 600);
-        this.setTitle("Semáforo");
+        this.setSize(850, 650);
         this.setResizable(false);
-        this.setLayout(null);
+        this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
+        
         this.setUndecorated(true);
-        
+
         componentes();
-        
+
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
+    
     public void componentes()
     {
-        JPanel panelPrincipal = new JPanel();
-        panelPrincipal.setLayout(null);
-        panelPrincipal.setSize(850, 600);
-        panelPrincipal.setBackground(Color.WHITE);
+        this.add(componentesPanelNorte(), BorderLayout.NORTH);
+    }
+
+    public JPanel componentesPanelNorte()
+    {
+        panelNorte = new JPanel();
         
-        JButton botonCerrar = new JButton("Cerrar");
-        botonCerrar.setBounds(750, 16, 80, 30);
-        
+        panelNorte.setBackground(Color.CYAN);
+        panelNorte.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        botonCerrar = new JButton("Cerrar");
+
         botonCerrar.addActionListener(new ActionListener()
         {
             @Override
@@ -51,8 +58,9 @@ public class VentanaPrincipal extends JFrame
             }
         });
         
-        panelPrincipal.add(botonCerrar);
+        panelNorte.add(new JButton("Boton1"));
+        panelNorte.add(botonCerrar);
         
-        this.add(panelPrincipal);
+        return panelNorte;
     }
 }

@@ -5,7 +5,7 @@
 package run;
 
 import java.awt.EventQueue;
-import vista.VentanaPrincipal;
+import vista.VentanaInicio;
 
 /**
  *
@@ -23,7 +23,7 @@ public class PrbSemaforo
         {
             try
             {
-                VentanaPrincipal ventana = new VentanaPrincipal();
+                VentanaInicio ventana = new VentanaInicio();
                 ventana.setVisible(true);
             } catch (Exception e)
             {
