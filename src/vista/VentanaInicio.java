@@ -59,17 +59,29 @@ public class VentanaInicio extends JFrame
         
         restricciones = new GridBagConstraints();
         textoSemaforo = new JLabel("Proyecto Semáforos");
-        textoSemaforo.setFont(new Font("Arial", Font.BOLD, 35));
+        textoSemaforo.setFont(new Font("Arial", Font.BOLD, 40));
         
-        restricciones.insets = new Insets(20, 0, 20, 0);
+        restricciones.insets = new Insets(10, 0, 10, 0);
         restricciones.gridx = 0;
         restricciones.gridy = 0;
         panelCentral.add(textoSemaforo, restricciones);
         
         botonComenzar = new JButton("Comenzar");
-        botonComenzar.setFont(new Font("Arial", Font.PLAIN, 20));
+        botonComenzar.setFont(new Font("Arial", Font.BOLD, 30));
         botonComenzar.setBackground(Color.GREEN);
-        restricciones.insets = new Insets(150, 0, 40, 0);
+        
+        botonComenzar.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                VentanaPrincipal ventana = new VentanaPrincipal();
+                ventana.setVisible(true);
+                dispose();
+            }
+        });
+        
+        restricciones.insets = new Insets(100, 0, 40, 0);
         restricciones.gridy = 1;
         panelCentral.add(botonComenzar, restricciones);
         
