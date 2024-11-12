@@ -17,7 +17,6 @@ public class CarrosVertical extends Thread
 {
 
     private JLabel contenedor;
-    private JLabel contadorVertical;
     private JFrame ventana;
     private JPanel panelCentral;
     private boolean ejecutandose = true;
@@ -26,7 +25,6 @@ public class CarrosVertical extends Thread
     public CarrosVertical(JLabel contenedor, JPanel panelCentral, JFrame ventana, int x)
     {
         this.contenedor = contenedor;
-        this.contadorVertical = contadorVertical;
         this.ventana = ventana;
         this.panelCentral = panelCentral;
         this.x = x;
@@ -35,7 +33,7 @@ public class CarrosVertical extends Thread
     @Override
     public void run()
     {
-        int y = 0;
+        int y = -64;
         while (isEjecutandose())
         {
             y += 5;
@@ -50,35 +48,38 @@ public class CarrosVertical extends Thread
                 System.out.println("Error...");
             }
 
-            if (y <= -40)
+            if (y >= 500)
             {
                 setEjecutandose(false);
             }
 
-            while (Variables.getEstadoSemáforoVertical() == 2 && y >= 150)
+            if (Variables.getEstadoSemáforoVertical() == 1 && y <= 60)
             {
-                y += 5;
-                getContenedor().setBounds(getX(), y, getContenedor().getWidth(), getContenedor().getHeight());
-                getContenedor().repaint();
-                try
+                while (Variables.getEstadoSemáforoVertical() == 1 && y <= 60)
                 {
-                    Thread.sleep(50);
-                } catch (Exception e)
+                    y += 5;
+                    getContenedor().setBounds(getX(), y, getContenedor().getWidth(), getContenedor().getHeight());
+                    getContenedor().repaint();
+                    try
+                    {
+                        Thread.sleep(50);
+                    } catch (Exception e)
+                    {
+                        System.out.println("Error");
+                    }
+                }
+                while (Variables.getEstadoSemáforoVertical() == 1)
                 {
-                    System.out.println("Error");
+                    try
+                    {
+                        Thread.sleep(50);
+                    } catch (InterruptedException ex)
+                    {
+                        System.out.println("Error");
+                    }
                 }
             }
-            while (Variables.getEstadoSemáforoVertical()== 2)
-            {
-                try
-                {
-                    Thread.sleep(50);
-                } catch (InterruptedException ex)
-                {
-                    System.out.println("Error");
-                }
-            }
-            while (Variables.getEstadoSemáforoVertical()== 0 && getX() <= 150)
+            while (Variables.getEstadoSemáforoVertical() == 2 && y <= 80)
             {
                 try
                 {
@@ -98,7 +99,8 @@ public class CarrosVertical extends Thread
     {
         setEjecutandose(false);
     }
-;
+
+    ;
 
     /**
      * @return the contenedor
@@ -114,22 +116,6 @@ public class CarrosVertical extends Thread
     public void setContenedor(JLabel contenedor)
     {
         this.contenedor = contenedor;
-    }
-
-    /**
-     * @return the contadorVertical
-     */
-    public JLabel getContadorVertical()
-    {
-        return contadorVertical;
-    }
-
-    /**
-     * @param contadorVertical the contadorVertical to set
-     */
-    public void setContadorVertical(JLabel contadorVertical)
-    {
-        this.contadorVertical = contadorVertical;
     }
 
     /**

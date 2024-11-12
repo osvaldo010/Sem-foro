@@ -35,7 +35,7 @@ public class CarrosHorizontal extends Thread
     @Override
     public synchronized void run()
     {
-        int x = 840;
+        int x = 864;
         while (isEjecutandose())
         {
             x -= 5;
