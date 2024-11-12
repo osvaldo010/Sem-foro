@@ -13,7 +13,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -48,7 +47,7 @@ public class VentanaPrincipal extends JFrame
     JLabel textoVehiculosVertical, textoVehiculosHorizontal, contadorVertical, contadorHorizontal, semaforoHorizontal, semaforoVertical;
     GridBagConstraints restricciones;
     Image fondo;
-    Timer timerSemaforo;
+    Timer timerSemaforo, timerContadores;
 
     public VentanaPrincipal()
     {
@@ -210,6 +209,7 @@ public class VentanaPrincipal extends JFrame
                 iniciarVehiculosVertical();
                 configurarSemaforoHorizontal();
                 configurarSemaforoVertical();
+                comprobarContadores();
             }
         });
         panelSur.add(botonComenzar, restricciones);
@@ -295,11 +295,11 @@ public class VentanaPrincipal extends JFrame
                         int numRand = rand.nextInt(4) + 1;
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/CarroV" + numRand + ".PNG")).getImage().getScaledInstance(64, 64, 0);
                         JLabel carro = new JLabel(new ImageIcon(imagen));
-                        carro.setBounds(320, 0, 64, 64);
+                        carro.setBounds(390, -20, 64, 64);
                         SwingUtilities.invokeLater(() -> panelCentral.add(carro));
-                        new CarrosVertical(carro, panelCentral, VentanaPrincipal.this, 320).start();
+                        new CarrosVertical(carro, panelCentral, VentanaPrincipal.this, 390).start();
 
-                        while (Variables.getEstadoSemáforoVertical()== 0)
+                        while (Variables.getEstadoSemáforoVertical()== 2)
                         {
                             Thread.sleep(50);
                         }
@@ -382,5 +382,22 @@ public class VentanaPrincipal extends JFrame
             }
         });
         timerSemaforo.start();
+    }
+    
+    public void comprobarContadores()
+    {
+        timerContadores = new Timer(3000, new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (Variables.getVehiculosEnHorizontal() == 0 && Variables.getVehiculosEnVertical() == 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Gracias por usar este simulador. El programa se carrará.");
+                    System.exit(0);
+                }
+            }
+        });
+        timerContadores.start();
     }
 }
