@@ -5,6 +5,7 @@
 package run;
 
 import java.awt.EventQueue;
+import javax.swing.JOptionPane;
 import vista.VentanaInicio;
 
 /**
@@ -27,6 +28,7 @@ public class PrbSemaforo
                 ventana.setVisible(true);
             } catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null,"Error al iniciar el porgrama.");
             }
         });
     }
