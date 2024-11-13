@@ -17,6 +17,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -24,6 +25,7 @@ import java.awt.event.WindowEvent;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,6 +35,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.Timer;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -44,13 +49,14 @@ public class VentanaPrincipal extends JFrame
     JButton botonCerrar, botonMinimizar, botonComenzar;
     JPanel panelNorte, panelSur;
     PanelConImagen panelCentral;
-    JLabel textoVehiculosVertical, textoVehiculosHorizontal, contadorVertical, contadorHorizontal, semaforoHorizontal, semaforoVertical;
+    JLabel textoVehiculosVertical, textoVehiculosHorizontal, contadorVertical, contadorHorizontal, semaforoHorizontal, semaforoVertical, txtsemaforoHorizontal, txtsemaforoVertical;
     GridBagConstraints restricciones;
     Image fondo;
     Timer timerSemaforo, timerContadores;
 
     public VentanaPrincipal()
     {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/IconoPrograma.png")));
         this.setSize(850, 650);
         this.setResizable(false);
         this.setLayout(new BorderLayout());
@@ -123,16 +129,21 @@ public class VentanaPrincipal extends JFrame
         this.add(componentesPanelNorte(), BorderLayout.NORTH);
         this.add(componentesPanelCentral(), BorderLayout.CENTER);
         this.add(componentesPanelSur(), BorderLayout.SOUTH);
+        Border margen = new EmptyBorder(0, 0, 0, 0);
+        Border bordeColor = new LineBorder(Color.decode("#051d40"), 5); 
+        this.getRootPane().setBorder(BorderFactory.createCompoundBorder(bordeColor, margen));
     }
 
     public JPanel componentesPanelNorte()
     {
         panelNorte = new JPanel();
 
-        panelNorte.setBackground(Color.BLUE);
+        panelNorte.setBackground(Color.decode("#051d40"));
         panelNorte.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
-        botonCerrar = new JButton("X");
-        botonCerrar.setBackground(Color.red);
+        botonCerrar = new JButton("x");
+        botonCerrar.setBackground(Color.decode("#cc0c0c"));
+        botonCerrar.setForeground(Color.WHITE);
+        botonCerrar.setFocusPainted(false); 
 
         botonCerrar.addActionListener(new ActionListener()
         {
@@ -144,7 +155,9 @@ public class VentanaPrincipal extends JFrame
         });
 
         botonMinimizar = new JButton("-");
-        botonMinimizar.setBackground(Color.YELLOW);
+        botonMinimizar.setBackground(Color.decode("#eee41a"));
+        botonMinimizar.setForeground(Color.decode("#151515"));
+        botonMinimizar.setFocusPainted(false); 
 
         botonMinimizar.addActionListener(new ActionListener()
         {
@@ -164,13 +177,17 @@ public class VentanaPrincipal extends JFrame
     public JPanel componentesPanelSur()
     {
         panelSur = new JPanel(new GridBagLayout());
-        panelSur.setBackground(Color.BLACK);
+        panelSur.setBackground(Color.decode("#fdf8f0"));
         panelSur.setPreferredSize(new Dimension(850, 100));
+        
+        Border margen = new EmptyBorder(0, 0,0, 0);
+        Border bordeColor = new LineBorder(Color.decode("#051d40"), 2); 
+        panelSur.setBorder(BorderFactory.createCompoundBorder(bordeColor, margen));
 
         restricciones = new GridBagConstraints();
         textoVehiculosVertical = new JLabel("Vehículos vertical: ");
         textoVehiculosVertical.setFont(new Font("Arial", Font.PLAIN, 20));
-        textoVehiculosVertical.setForeground(Color.WHITE);
+        textoVehiculosVertical.setForeground(Color.decode("#051d40"));
         restricciones.gridx = 0;
         restricciones.gridy = 0;
         restricciones.insets = new Insets(0, 20, 0, 20);
@@ -178,25 +195,27 @@ public class VentanaPrincipal extends JFrame
 
         contadorVertical = new JLabel("0");
         contadorVertical.setFont(new Font("Arial", Font.PLAIN, 20));
-        contadorVertical.setForeground(Color.WHITE);
+        contadorVertical.setForeground(Color.decode("#051d40"));
         restricciones.gridx = 1;
         panelSur.add(contadorVertical, restricciones);
 
         textoVehiculosHorizontal = new JLabel("Vehículos en horizontal: ");
         textoVehiculosHorizontal.setFont(new Font("Arial", Font.PLAIN, 20));
-        textoVehiculosHorizontal.setForeground(Color.WHITE);
+        textoVehiculosHorizontal.setForeground(Color.decode("#051d40"));
         restricciones.gridx = 2;
         panelSur.add(textoVehiculosHorizontal, restricciones);
 
         contadorHorizontal = new JLabel("0");
         contadorHorizontal.setFont(new Font("Arial", Font.PLAIN, 20));
-        contadorHorizontal.setForeground(Color.WHITE);
+        contadorHorizontal.setForeground(Color.decode("#051d40"));
         restricciones.gridx = 3;
         panelSur.add(contadorHorizontal, restricciones);
 
         botonComenzar = new JButton("Comenzar");
         botonComenzar.setFont(new Font("Arial", Font.BOLD, 20));
-        botonComenzar.setBackground(Color.GREEN);
+        botonComenzar.setBackground(Color.decode("#051d40"));
+        botonComenzar.setForeground(Color.decode("#fdf8f0"));
+        botonComenzar.setFocusPainted(false); 
         restricciones.gridx = 4;
 
         botonComenzar.addActionListener(new ActionListener()
@@ -224,12 +243,23 @@ public class VentanaPrincipal extends JFrame
 
         semaforoHorizontal = new JLabel();
         semaforoHorizontal.setBounds(100, 50, 128, 128);
+        txtsemaforoHorizontal = new JLabel("Horizontal");
+        txtsemaforoHorizontal.setBounds(129, 6, 80, 64);
+        txtsemaforoHorizontal.setFont(new Font("Arial", Font.BOLD, 14));
+        txtsemaforoHorizontal.setForeground(Color.decode("#051d40"));
+        
         panelCentral.add(semaforoHorizontal);
+        panelCentral.add(txtsemaforoHorizontal);
 
         semaforoVertical = new JLabel();
         semaforoVertical.setBounds(523, 325, 128, 128);
+        txtsemaforoVertical = new JLabel("Vertical");
+        txtsemaforoVertical.setBounds(561, 432, 80, 64);
+        txtsemaforoVertical.setFont(new Font("Arial", Font.BOLD, 14));
+        txtsemaforoVertical.setForeground(Color.decode("#051d40"));
 
         panelCentral.add(semaforoVertical);
+        panelCentral.add(txtsemaforoVertical);
 
         return panelCentral;
     }
@@ -238,7 +268,7 @@ public class VentanaPrincipal extends JFrame
     {
         if (Variables.getVehiculosEnHorizontal() == 0)
         {
-            JOptionPane.showMessageDialog(null, "No hay vehiculos en horizontal");
+            JOptionPane.showMessageDialog(null, "No hay vehículos en horizontal");
             VentanaInicio ventana = new VentanaInicio();
             ventana.setVisible(true);
             dispose();
@@ -277,7 +307,7 @@ public class VentanaPrincipal extends JFrame
     {
         if (Variables.getVehiculosEnVertical()== 0)
         {
-            JOptionPane.showMessageDialog(null, "No hay vehiculos en horizontal");
+            JOptionPane.showMessageDialog(null, "No hay vehículos en horizontal");
             VentanaInicio ventana = new VentanaInicio();
             ventana.setVisible(true);
             dispose();
