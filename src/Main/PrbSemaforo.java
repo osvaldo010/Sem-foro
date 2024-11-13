@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package run;
+package Main;
 
 import java.awt.EventQueue;
 import javax.swing.JOptionPane;
-import vista.VentanaInicio;
+import GUI.VentanaInicio;
 
 /**
  *
@@ -28,9 +28,9 @@ public class PrbSemaforo
                 ventana.setVisible(true);
             } catch (Exception e)
             {
-                JOptionPane.showMessageDialog(null,"Error al iniciar el porgrama.");
+                JOptionPane.showMessageDialog(null, "Error al iniciar el porgrama.");
             }
         });
     }
-    
+
 }

@@ -2,12 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package vista;
+package GUI;
 
-import controlador.CarrosHorizontal;
-import controlador.CarrosVertical;
-import controlador.PanelConImagen;
-import controlador.Variables;
+import Hilos.CarrosHorizontal;
+import Hilos.CarrosVertical;
+import Hilos.Variables;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -56,7 +55,7 @@ public class VentanaPrincipal extends JFrame
 
     public VentanaPrincipal()
     {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/IconoPrograma.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("GUI/IconoPrograma.png")));
         this.setSize(850, 650);
         this.setResizable(false);
         this.setLayout(new BorderLayout());
@@ -65,7 +64,7 @@ public class VentanaPrincipal extends JFrame
 
         this.setUndecorated(true);
 
-        fondo = new ImageIcon(getClass().getResource("/imagenes/Calle.JPEG")).getImage();
+        fondo = new ImageIcon(getClass().getResource("/GUI/Calle.JPEG")).getImage();
 
         componentes();
 
@@ -185,7 +184,7 @@ public class VentanaPrincipal extends JFrame
         panelSur.setBorder(BorderFactory.createCompoundBorder(bordeColor, margen));
 
         restricciones = new GridBagConstraints();
-        textoVehiculosVertical = new JLabel("Vehículos vertical: ");
+        textoVehiculosVertical = new JLabel("Vehículos en vertical: ");
         textoVehiculosVertical.setFont(new Font("Arial", Font.PLAIN, 20));
         textoVehiculosVertical.setForeground(Color.decode("#051d40"));
         restricciones.gridx = 0;
@@ -238,7 +237,7 @@ public class VentanaPrincipal extends JFrame
 
     public JPanel componentesPanelCentral()
     {
-        panelCentral = new PanelConImagen("/imagenes/Calle.JPEG");
+        panelCentral = new PanelConImagen("/GUI/Calle.JPEG");
         panelCentral.setLayout(null);
 
         semaforoHorizontal = new JLabel();
@@ -284,7 +283,7 @@ public class VentanaPrincipal extends JFrame
                     {
                         Random rand = new Random();
                         int numRand = rand.nextInt(3) + 1;
-                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/Carro" + numRand + ".PNG")).getImage().getScaledInstance(64, 64, 0);
+                        Image imagen = new ImageIcon(getClass().getResource("/GUI/Carro" + numRand + ".PNG")).getImage().getScaledInstance(64, 64, 0);
                         JLabel carro = new JLabel(new ImageIcon(imagen));
                         carro.setBounds(840, 222, 64, 64);
                         SwingUtilities.invokeLater(() -> panelCentral.add(carro));
@@ -323,7 +322,7 @@ public class VentanaPrincipal extends JFrame
                     {
                         Random rand = new Random();
                         int numRand = rand.nextInt(4) + 1;
-                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/CarroV" + numRand + ".PNG")).getImage().getScaledInstance(64, 64, 0);
+                        Image imagen = new ImageIcon(getClass().getResource("/GUI/CarroV" + numRand + ".PNG")).getImage().getScaledInstance(64, 64, 0);
                         JLabel carro = new JLabel(new ImageIcon(imagen));
                         carro.setBounds(390, -20, 64, 64);
                         SwingUtilities.invokeLater(() -> panelCentral.add(carro));
@@ -367,13 +366,13 @@ public class VentanaPrincipal extends JFrame
         switch (Variables.getEstadoSemáforoHorizontal())
         {
             case 0:
-                semaforoHorizontal.setIcon(new ImageIcon(getClass().getResource("/imagenes/Semaforo1.png")));
+                semaforoHorizontal.setIcon(new ImageIcon(getClass().getResource("/GUI/Semaforo1.png")));
                 break;
             case 1:
-                semaforoHorizontal.setIcon(new ImageIcon(getClass().getResource("/imagenes/Semaforo3.png")));
+                semaforoHorizontal.setIcon(new ImageIcon(getClass().getResource("/GUI/Semaforo3.png")));
                 break;
             case 2:
-                semaforoHorizontal.setIcon(new ImageIcon(getClass().getResource("/imagenes/Semaforo2.png")));
+                semaforoHorizontal.setIcon(new ImageIcon(getClass().getResource("/GUI/Semaforo2.png")));
                 break;
         }
     }
@@ -383,13 +382,13 @@ public class VentanaPrincipal extends JFrame
         switch (Variables.getEstadoSemáforoVertical())
         {
             case 0:
-                semaforoVertical.setIcon(new ImageIcon(getClass().getResource("/imagenes/Semaforo3.png")));
+                semaforoVertical.setIcon(new ImageIcon(getClass().getResource("/GUI/Semaforo3.png")));
                 break;
             case 1:
-                semaforoVertical.setIcon(new ImageIcon(getClass().getResource("/imagenes/Semaforo2.png")));
+                semaforoVertical.setIcon(new ImageIcon(getClass().getResource("/GUI/Semaforo2.png")));
                 break;
             case 2:
-                semaforoVertical.setIcon(new ImageIcon(getClass().getResource("/imagenes/Semaforo1.png")));
+                semaforoVertical.setIcon(new ImageIcon(getClass().getResource("/GUI/Semaforo1.png")));
                 break;
         }
     }

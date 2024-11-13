@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package vista;
+package GUI;
 
-import controlador.CarrosHorizontalInicio;
+import Hilos.CarrosHorizontalInicio;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -47,7 +47,7 @@ public class VentanaInicio extends JFrame
 
     public VentanaInicio()
     {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/IconoPrograma.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("GUI/IconoPrograma.png")));
         this.setSize(700, 500);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -173,7 +173,7 @@ public class VentanaInicio extends JFrame
     
     public Image getIconImage()
     {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/IconoPrograma.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("GUI/IconoPrograma.png"));
         return retValue;
     }
     
@@ -189,7 +189,7 @@ public class VentanaInicio extends JFrame
                     {
                         Random rand = new Random();
                         int numRand = rand.nextInt(3) + 1;
-                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/Carro" + numRand + ".PNG")).getImage().getScaledInstance(64, 64, 0);
+                        Image imagen = new ImageIcon(getClass().getResource("/GUI/Carro" + numRand + ".PNG")).getImage().getScaledInstance(64, 64, 0);
                         JLabel carro = new JLabel(new ImageIcon(imagen));
                         carro.setBounds(840, 222, 64, 64);
                         SwingUtilities.invokeLater(() -> panelCentral.add(carro));
